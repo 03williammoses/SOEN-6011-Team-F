@@ -42,7 +42,7 @@ public class F2 {
 	 * 
 	 * @param x is the input degree value
 	 * 
-	 * @return the tangent value by calling the tanX method for further evaluation
+	 * @return the reduced angle value
 	 */
 	public static double reducesAnguleTaxX(double x) {
 		x = x % 360;
@@ -51,6 +51,11 @@ public class F2 {
 		return x;
 	}
 	
+	/**
+	 * getTaxX will return the formatted tangent value
+	 * @param x is the input to find the tangent value
+	 * @return either the value of the tangent is returned or an exception is throwed to UI
+	 */
 	public static String getTanX(double x) {
 		if(x%90==0 && (x/90)%2!=0) {
 			return "Error :Value must not be the odd multiple of pi/2";

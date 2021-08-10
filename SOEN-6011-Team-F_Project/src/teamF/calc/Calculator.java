@@ -75,70 +75,71 @@ public class Calculator extends Applet implements ActionListener {
 	String num3 = "";
 	
 	public void actionPerformed(ActionEvent e) {
-		String button = e.getActionCommand();
-		char ch = button.charAt(0);
-		if (ch >= '0' && ch <= '9' || ch == '.') {
-			if (!op.equals(""))
-				num2 = num2 + button;
-			else
-				num1 = num1 + button;
-			inp.setText(inp.getText()+ch);
-		} else if (ch == 'C') {
-			num1 = op = num2 = "";
-			inp.setText("");
-		} else if(button.equals("tan(x)")){
-			inp.setText("tan(x) : x = ");
-		} else if(button.equals("sinh(x)")){
-			inp.setText("sinh(x) : x = ");
-		} else if(button.equals("ab^x")){
-			inp.setText("ab^x : a = ");
-		} else if(button.equals("x^y")){
-			inp.setText("x^y : x = ");
-		}  else if(button.equals("=")) {
-			if(inp.getText().startsWith("ab^x")) {
-				if(inp.getText().substring(7).contains("a")) {
-					num1=inp.getText().substring(10);
-					inp.setText("ab^x : b = ");
-					JOptionPane.showMessageDialog(this, num1);
-				} else if(inp.getText().substring(7).contains("b")) {
-					num2=inp.getText().substring(10);
-					inp.setText("ab^x : x = ");
-					JOptionPane.showMessageDialog(this, num2);
-				} else {
-					num3=inp.getText().substring(11);
-////					F5 f5 = new F5();
-////					double a = Double.parseDouble(num1);
-////					double b = Double.parseDouble(num2);
-////					int x = Integer.parseInt(num3);
-//					inp.setText(f5.calc_F5(a, b, x)+"");
-				}
-			} else if(inp.getText().startsWith("tan(x)")) {
-				num1=inp.getText().substring(12);
-				F2 f = new F2();
-				String result = F2.getTanX(Double.parseDouble(num1));
-				if(result.startsWith("Error")) {
-					inp.setText("");
-					JOptionPane.showMessageDialog(this, result.substring(7));
-				}else {
-					inp.setText(result);
-				}
-				
-			} else if(inp.getText().startsWith("sinh(x)")) {
-				num1=inp.getText().substring(13);
-//				String output = Function call;
-				inp.setText(num1);
-			} else if(inp.getText().startsWith("x^y")) {
-				if(inp.getText().substring(5).contains("x")) {
-					num1=inp.getText().substring(9);
-					inp.setText("x^y : y = ");
-					JOptionPane.showMessageDialog(this, num1);
-				} else {
-					num2=inp.getText().substring(9);
-//					String output = Function call;
-					inp.setText(num2);
+			String button = e.getActionCommand();
+			char ch = button.charAt(0);
+			if (ch >= '0' && ch <= '9' || ch == '.') {
+				if (!op.equals(""))
+					num2 = num2 + button;
+				else
+					num1 = num1 + button;
+				inp.setText(inp.getText()+ch);
+			} else if (ch == 'C') {
+				num1 = op = num2 = "";
+				inp.setText("");
+			} else if(button.equals("tan(x)")){
+				inp.setText("tan(x) : x = ");
+			} else if(button.equals("sinh(x)")){
+				inp.setText("sinh(x) : x = ");
+			} else if(button.equals("ab^x")){
+				inp.setText("ab^x : a = ");
+			} else if(button.equals("x^y")){
+				inp.setText("x^y : x = ");
+			}  else if(button.equals("=")) {
+				if(inp.getText().startsWith("ab^x")) {
+					if(inp.getText().substring(7).contains("a")) {
+						num1=inp.getText().substring(10);
+						inp.setText("ab^x : b = ");
+						JOptionPane.showMessageDialog(this, num1);
+					} else if(inp.getText().substring(7).contains("b")) {
+						num2=inp.getText().substring(10);
+						inp.setText("ab^x : x = ");
+						JOptionPane.showMessageDialog(this, num2);
+					} else {
+						num3=inp.getText().substring(11);
+	////					F5 f5 = new F5();
+	////					double a = Double.parseDouble(num1);
+	////					double b = Double.parseDouble(num2);
+	////					int x = Integer.parseInt(num3);
+	//					inp.setText(f5.calc_F5(a, b, x)+"");
+					}
+				} else if(inp.getText().startsWith("tan(x)")) {
+					num1=inp.getText().substring(12);
+					F2 f = new F2();
+					String result = F2.getTanX(num1);
+					if(result.startsWith("Error")) {
+						inp.setText("");
+						JOptionPane.showMessageDialog(this, result.substring(7));
+					}else {
+						inp.setText(result);
+					}
+					
+				} else if(inp.getText().startsWith("sinh(x)")) {
+					num1=inp.getText().substring(13);
+	//				String output = Function call;
+					inp.setText(num1);
+				} else if(inp.getText().startsWith("x^y")) {
+					if(inp.getText().substring(5).contains("x")) {
+						num1=inp.getText().substring(9);
+						inp.setText("x^y : y = ");
+						JOptionPane.showMessageDialog(this, num1);
+					} else {
+						num2=inp.getText().substring(9);
+	//					String output = Function call;
+						inp.setText(num2);
+					}
 				}
 			}
-		}
-//		JOptionPane.showMessageDialog(this, button);
+			
+//		
 	}
 }

@@ -94,23 +94,21 @@ public class Calculator extends Applet implements ActionListener {
 				inp.setText("ab^x : a = ");
 			} else if(button.equals("x^y")){
 				inp.setText("x^y : x = ");
-			}  else if(button.equals("=")) {
+			} else if(button.equals("=")) {
 				if(inp.getText().startsWith("ab^x")) {
 					if(inp.getText().substring(7).contains("a")) {
 						num1=inp.getText().substring(10);
 						inp.setText("ab^x : b = ");
-						JOptionPane.showMessageDialog(this, num1);
 					} else if(inp.getText().substring(7).contains("b")) {
 						num2=inp.getText().substring(10);
 						inp.setText("ab^x : x = ");
-						JOptionPane.showMessageDialog(this, num2);
 					} else {
 						num3=inp.getText().substring(11);
-	////					F5 f5 = new F5();
-	////					double a = Double.parseDouble(num1);
-	////					double b = Double.parseDouble(num2);
-	////					int x = Integer.parseInt(num3);
-	//					inp.setText(f5.calc_F5(a, b, x)+"");
+						F5 f5 = new F5();
+						double a = Double.parseDouble(num1);
+						double b = Double.parseDouble(num2);
+						int x = Integer.parseInt(num3);
+						inp.setText(f5.calc_F5(a, b, x)+"");
 					}
 				} else if(inp.getText().startsWith("tan(x)")) {
 					num1=inp.getText().substring(12);
@@ -119,7 +117,7 @@ public class Calculator extends Applet implements ActionListener {
 					if(result.startsWith("Error")) {
 						inp.setText("");
 						JOptionPane.showMessageDialog(this, result.substring(7));
-					}else {
+					} else {
 						inp.setText(result);
 					}
 					
@@ -134,8 +132,7 @@ public class Calculator extends Applet implements ActionListener {
 						JOptionPane.showMessageDialog(this, num1);
 					} else {
 						num2=inp.getText().substring(9);
-	//					String output = Function call;
-						inp.setText(num2);
+						inp.setText(F7.myPow(Double.parseDouble(num1), Long.parseLong(num2.trim()))+"");
 					}
 				}
 			}

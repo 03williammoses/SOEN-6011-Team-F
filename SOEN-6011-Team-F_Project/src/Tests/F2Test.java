@@ -3,6 +3,7 @@ package Tests;
 import org.junit.Assert;
 import org.junit.Test;
 
+import teamF.calc.CustomException;
 import teamF.calc.F2;
 /**
  * This class is used to test the basic reqirements for the tan(x) function
@@ -15,36 +16,40 @@ public class F2Test {
 	
 	/**
 	 * Invalid Output
+	 * @throws CustomException 
 	 */
     @Test
-    public void test1() {
+    public void test1() throws CustomException {
         double x = 270;
         Assert.assertEquals(F2.getTanX(String.valueOf(x)), "Error :Value must not be the odd multiple of pi/2");
     }
     
 	/**
 	 * Invalid Output
+	 * @throws CustomException 
 	 */
     @Test
-    public void test2() {
+    public void test2() throws CustomException {
         double x = 90;
         Assert.assertEquals(F2.getTanX(String.valueOf(x)), "Error :Value must not be the odd multiple of pi/2");
     }
     
     /**
      * Valid Positive Input
+     * @throws CustomException 
      */
     @Test
-    public void test3() {
+    public void test3() throws CustomException {
         double x = 290;
         Assert.assertEquals(F2.getTanX(String.valueOf(x)), "-2.74749");
     }
     
     /**
      * Valid Negative Input
+     * @throws CustomException 
      */
     @Test
-    public void test4() {
+    public void test4() throws CustomException {
         double x = -160;
         Assert.assertEquals(F2.getTanX(String.valueOf(x)), "0.36397");
     }
@@ -59,19 +64,21 @@ public class F2Test {
     }
 	
 	/**
+	 * @throws CustomException 
      * 
      */
 	@Test
-    public void test6() {
+    public void test6() throws CustomException {
         double x = Double.NaN;
         Assert.assertEquals(String.valueOf(F2.getTanX(String.valueOf(x))), "Error :Value is NaN or not finite");
     }
 
 	/**
+	 * @throws CustomException 
      * 
      */
 	@Test
-    public void test7() {
+    public void test7() throws CustomException {
         Assert.assertEquals(String.valueOf(F2.getTanX(" ")), "Error :Input should be a real number");
     }
 }

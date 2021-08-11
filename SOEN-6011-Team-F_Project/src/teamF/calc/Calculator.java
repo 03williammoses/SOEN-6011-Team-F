@@ -7,6 +7,7 @@ import java.awt.Dimension;
 import java.awt.TextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.InputMismatchException;
 
 import javax.swing.JOptionPane;
 
@@ -103,22 +104,31 @@ public class Calculator extends Applet implements ActionListener {
 						num2=inp.getText().substring(10);
 						inp.setText("ab^x : x = ");
 					} else {
-						num3=inp.getText().substring(11);
-						F5 f5 = new F5();
-						double a = Double.parseDouble(num1);
-						double b = Double.parseDouble(num2);
-						int x = Integer.parseInt(num3);
-						inp.setText(f5.calc_F5(a, b, x)+"");
+						try {
+							num3=inp.getText().substring(11);
+							F5 f5 = new F5();
+							double a = Double.parseDouble(num1);
+							double b = Double.parseDouble(num2);
+							int x = Integer.parseInt(num3);
+							inp.setText(f5.calc_F5(a, b, x)+"");
+						} catch (InputMismatchException F5Exception) {
+							JOptionPane.showMessageDialog(this, "Enter Valid values. a, b should be Integer or Float. x should be Integer. " + F5Exception.toString());
+			            } catch (IllegalArgumentException F5Exception) {
+			            	JOptionPane.showMessageDialog(this, "Undefined output. " + F5Exception.toString());
+			            } catch (ArithmeticException F5Exception) {
+			            	JOptionPane.showMessageDialog(this, "Overflowed result. " + F5Exception.toString());
+			            } catch (Exception F5Exception) {
+			            	JOptionPane.showMessageDialog(this, F5Exception.toString());
+			            }
 					}
 				} else if(inp.getText().startsWith("tan(x)")) {
-					num1=inp.getText().substring(12);
-					F2 f = new F2();
-					String result = F2.getTanX(num1);
-					if(result.startsWith("Error")) {
-						inp.setText("");
-						JOptionPane.showMessageDialog(this, result.substring(7));
-					} else {
+					try {
+						num1=inp.getText().substring(12);
+						F2 f = new F2();
+						String result = F2.getTanX(num1);
 						inp.setText(result);
+					}catch(CustomException F2Exception) {
+						JOptionPane.showMessageDialog(this, F2Exception.message);
 					}
 					
 				} else if(inp.getText().startsWith("sinh(x)")) {
@@ -129,10 +139,16 @@ public class Calculator extends Applet implements ActionListener {
 					if(inp.getText().substring(5).contains("x")) {
 						num1=inp.getText().substring(9);
 						inp.setText("x^y : y = ");
-						JOptionPane.showMessageDialog(this, num1);
 					} else {
-						num2=inp.getText().substring(9);
-						inp.setText(F7.myPow(Double.parseDouble(num1), Long.parseLong(num2.trim()))+"");
+						try {
+							num2=inp.getText().substring(9);
+							inp.setText(F7.myPow(Double.parseDouble(num1), Long.parseLong(num2.trim()))+"");
+						} catch(IllegalArgumentException F7Exception) {
+							JOptionPane.showMessageDialog(this, F7Exception.getMessage());
+						} catch(ArithmeticException F7Exception) {
+							JOptionPane.showMessageDialog(this, F7Exception.getMessage());
+						}
+						
 					}
 				}
 			}

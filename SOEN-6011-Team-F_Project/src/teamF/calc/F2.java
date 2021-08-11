@@ -57,20 +57,21 @@ public class F2 {
 	 * getTaxX will return the formatted tangent value
 	 * @param x is the input to find the tangent value
 	 * @return either the value of the tangent is returned or an exception is throwed to UI
+	 * @throws CustomException 
 	 */
-	public static String getTanX(String value) {
+	public static String getTanX(String value) throws CustomException {
 		try {
 			double x = Double.parseDouble(value);
 			if(Double.isNaN(x) || Double.isInfinite(x)) {
-				 return "Error :Value is NaN or not finite";
+				 throw new CustomException("Value is NaN or not finite");
 			 } else if(x%90==0 && (x/90)%2!=0) {
-				return "Error :Value must not be the odd multiple of pi/2";
+				 throw new CustomException("Value must not be the odd multiple of pi/2");
 			 } else{
 				x = reducesAnguleTaxX(x);
 				return String.valueOf(String.format("%.5f", tanXPolynomialOperations(x)));
 			 }
 		}catch(NumberFormatException e) {
-			return "Error :Input should be a real number";
+			throw new CustomException("Input should be a real number");
 		}
 	}
 	

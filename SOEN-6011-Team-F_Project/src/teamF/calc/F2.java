@@ -56,8 +56,8 @@ public class F2 {
 	/**
 	 * getTaxX will return the formatted tangent value
 	 * @param x is the input to find the tangent value
-	 * @return either the value of the tangent is returned or an exception is throwed to UI
-	 * @throws CustomException 
+	 * @return the value of the tangent is returned to the UI
+	 * @throws CustomException which handles the invalid inputs for tan(x) function
 	 */
 	public static String getTanX(String value) throws CustomException {
 		try {
@@ -71,7 +71,7 @@ public class F2 {
 				return String.valueOf(String.format("%.5f", tanXPolynomialOperations(x)));
 			 }
 		}catch(NumberFormatException e) {
-			throw new CustomException("Input should be a real number");
+			throw new NumberFormatException("Input should be a real number");
 		}
 	}
 	

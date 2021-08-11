@@ -3,7 +3,6 @@ package teamF.calc;
 import java.applet.Applet;
 import java.awt.Button;
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.TextField;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -12,8 +11,13 @@ import java.util.InputMismatchException;
 import javax.swing.JOptionPane;
 
 public class Calculator extends Applet implements ActionListener {
+	
+	private static final long serialVersionUID = 1L;
 	TextField inp;
-
+	String op = "";
+	String num1 = "";
+	String num2 = "";
+	String num3 = "";
 	public void init() {
 		setBackground(Color.white);
 		setLayout(null);
@@ -63,17 +67,11 @@ public class Calculator extends Applet implements ActionListener {
 				this.add(operator[i]);
 				operator[i].addActionListener(this);
 			}
-
 		}
 		operator[4].setBounds(150, 150, 100, 100);
 		this.add(operator[4]);
 		operator[4].addActionListener(this);
 	}
-
-	String op = "";
-	String num1 = "";
-	String num2 = "";
-	String num3 = "";
 	
 	public void actionPerformed(ActionEvent e) {
 			String button = e.getActionCommand();
@@ -127,8 +125,12 @@ public class Calculator extends Applet implements ActionListener {
 						F2 f = new F2();
 						String result = F2.getTanX(num1);
 						inp.setText(result);
-					}catch(CustomException F2Exception) {
+					} catch(NumberFormatException F2Exception) {
+						JOptionPane.showMessageDialog(this, F2Exception.getMessage());
+					} catch(CustomException F2Exception) {
 						JOptionPane.showMessageDialog(this, F2Exception.message);
+					} catch(Exception F2Exception) {
+						JOptionPane.showMessageDialog(this, F2Exception.getMessage());
 					}
 					
 				} else if(inp.getText().startsWith("sinh(x)")) {
@@ -148,11 +150,8 @@ public class Calculator extends Applet implements ActionListener {
 						} catch(ArithmeticException F7Exception) {
 							JOptionPane.showMessageDialog(this, F7Exception.getMessage());
 						}
-						
 					}
 				}
 			}
-			
-//		
 	}
 }

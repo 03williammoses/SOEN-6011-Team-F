@@ -45,16 +45,16 @@ public class Calculator extends Applet implements ActionListener {
 		this.add(zero);
 		zero.addActionListener(this);
 
-		Button clr = new Button("C");
+		Button clr = new Button("-");
 		clr.setBounds(100, 200, 50, 50);
 		this.add(clr);
 		clr.addActionListener(this);
 
 		Button operator[] = new Button[5];
 		operator[0] = new Button("tan(x)");
-		operator[1] = new Button("sinh(x)");
-		operator[2] = new Button("ab^x");
-		operator[3] = new Button("x^y");
+		operator[1] = new Button("ab^x");
+		operator[2] = new Button("x^y");
+		operator[3] = new Button("C");
 		operator[4] = new Button("=");
 
 		for (i = 0; i < 4; i++) {
@@ -76,19 +76,13 @@ public class Calculator extends Applet implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 			String button = e.getActionCommand();
 			char ch = button.charAt(0);
-			if (ch >= '0' && ch <= '9' || ch == '.') {
-				if (!op.equals(""))
-					num2 = num2 + button;
-				else
-					num1 = num1 + button;
+			if (ch >= '0' && ch <= '9' || ch == '.' || ch == '-') {
 				inp.setText(inp.getText()+ch);
 			} else if (ch == 'C') {
 				num1 = op = num2 = "";
 				inp.setText("");
 			} else if(button.equals("tan(x)")){
 				inp.setText("tan(x) : x = ");
-			} else if(button.equals("sinh(x)")){
-				inp.setText("sinh(x) : x = ");
 			} else if(button.equals("ab^x")){
 				inp.setText("ab^x : a = ");
 			} else if(button.equals("x^y")){
@@ -127,29 +121,33 @@ public class Calculator extends Applet implements ActionListener {
 						inp.setText(result);
 					} catch(NumberFormatException F2Exception) {
 						JOptionPane.showMessageDialog(this, F2Exception.getMessage());
-					} catch(CustomException F2Exception) {
-						JOptionPane.showMessageDialog(this, F2Exception.message);
+					} catch(InputMismatchException F2Exception) {
+						JOptionPane.showMessageDialog(this, F2Exception.getMessage());
+					} catch(ArithmeticException F2Exception) {
+						JOptionPane.showMessageDialog(this, F2Exception.getMessage());
 					} catch(Exception F2Exception) {
 						JOptionPane.showMessageDialog(this, F2Exception.getMessage());
 					}
-					
-				} else if(inp.getText().startsWith("sinh(x)")) {
-					num1=inp.getText().substring(13);
-	//				String output = Function call;
-					inp.setText(num1);
 				} else if(inp.getText().startsWith("x^y")) {
-					if(inp.getText().substring(5).contains("x")) {
-						num1=inp.getText().substring(9);
+					System.out.println(inp.getText().substring(3));
+					if(inp.getText().substring(3).contains("x")) {
+						num1=inp.getText().substring(10);
+						System.out.println(num1);
 						inp.setText("x^y : y = ");
 					} else {
 						try {
-							num2=inp.getText().substring(9);
-							inp.setText(F7.myPow(Double.parseDouble(num1), Long.parseLong(num2.trim()))+"");
-						} catch(IllegalArgumentException F7Exception) {
-							JOptionPane.showMessageDialog(this, F7Exception.getMessage());
-						} catch(ArithmeticException F7Exception) {
-							JOptionPane.showMessageDialog(this, F7Exception.getMessage());
-						}
+							num2=inp.getText().substring(10);
+							System.out.println(num1+" "+num2);
+							inp.setText(F7.myPow(Double.parseDouble(num1), Long.parseLong(num2))+"");
+						} catch(InputMismatchException F7Exception) {
+							JOptionPane.showMessageDialog(this, "Invalid Input: the x could be floating number or integer. y should be an integer");
+			            } catch (IllegalArgumentException F7Exception) {
+			            	JOptionPane.showMessageDialog(this, "divide by zero exception");
+			            }catch (ArithmeticException F7Exception) {
+			            	JOptionPane.showMessageDialog(this, "infinity");
+			            }catch (Exception F7Exception) {
+			            	JOptionPane.showMessageDialog(this, "Undefined output: " + F7Exception.toString());
+			            }
 					}
 				}
 			}

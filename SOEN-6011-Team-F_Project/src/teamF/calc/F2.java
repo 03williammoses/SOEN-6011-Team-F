@@ -1,9 +1,13 @@
 package teamF.calc;
 
-import javax.swing.JOptionPane;
+import java.util.InputMismatchException;
+
 
 /**
- * This class F2 is used to find the tangent value as per the Function F2
+ * This class F2 is used to find the tangent value as per the Function F2.
+ * 
+ * Tan(x) is the trigonometric function that relates the angle x to the 
+ * opposite and adjacent sides of a right-angle triangle.
  * 
  * @author WILLIAM MOSES STALIN JEBADOSS
  * @studentID 40186129
@@ -40,7 +44,7 @@ public class F2 {
 	
 	/**
 	 * This function reduces the angle that is equivalent 
-	 * to the angle in the range 0 and 360
+	 * to the angle in the range of 0 and 360
 	 * 
 	 * @param x is the input degree value
 	 * 
@@ -54,18 +58,25 @@ public class F2 {
 	}
 	
 	/**
-	 * getTaxX will return the formatted tangent value
-	 * @param x is the input to find the tangent value
-	 * @return the value of the tangent is returned to the UI
-	 * @throws CustomException which handles the invalid inputs for tan(x) function
-	 */
-	public static String getTanX(String value) throws CustomException {
+     * Returns the trigonometric tangent of an angle.  Special cases:
+     * <ul><li>If the argument is NaN or an infinity, then the result
+     * is NaN.
+     * <li>If the argument is zero, then the result is a zero with the
+     * same sign as the argument.</ul>
+     *
+     * <p>The computed result must be within 1 ulp of the exact result.
+     * Results must be semi-monotonic.
+     *
+     * @param   value   an angle, in radians.
+     * @return  the tangent of the argument.
+     */
+	public static String getTanX(String value) {
 		try {
 			double x = Double.parseDouble(value);
 			if(Double.isNaN(x) || Double.isInfinite(x)) {
-				 throw new CustomException("Value is NaN or not finite");
+				 throw new ArithmeticException("Value is NaN or not finite");
 			 } else if(x%90==0 && (x/90)%2!=0) {
-				 throw new CustomException("Value must not be the odd multiple of pi/2");
+				 throw new InputMismatchException("Value must not be the odd multiple of pi/2");
 			 } else{
 				x = reducesAnguleTaxX(x);
 				return String.valueOf(String.format("%.5f", tanXPolynomialOperations(x)));
@@ -74,5 +85,4 @@ public class F2 {
 			throw new NumberFormatException("Input should be a real number");
 		}
 	}
-	
 }

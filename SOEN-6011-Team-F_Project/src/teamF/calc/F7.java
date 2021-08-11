@@ -55,5 +55,9 @@ public class F7 {
 
         return result;
     }
+    
+    public static void main(String arp[]) {
+    	System.out.println(myPow(2, 10));
+    }
 
 }

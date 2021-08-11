@@ -1,12 +1,13 @@
 package Tests;
 
+import java.util.InputMismatchException;
+
 import org.junit.Assert;
 import org.junit.Test;
 
-import teamF.calc.CustomException;
 import teamF.calc.F2;
 /**
- * This class is used to test the basic reqirements for the tan(x) function
+ * This class is used to test the basic reqirements for the tangent function
  * 
  * @author William Moses Stalin Jebadoss
  * @studentID 40186129
@@ -15,47 +16,57 @@ import teamF.calc.F2;
 public class F2Test {
 	
 	/**
-	 * Invalid Output
-	 * @throws CustomException 
+	 * 
+	 * This testcase will evaluate the value of
+	 * invalid input which is an odd multiple of pi/2
+	 * 
 	 */
     @Test
-    public void test1() throws CustomException {
+    public void test1() {
         double x = 270;
-        Assert.assertEquals(F2.getTanX(String.valueOf(x)), "Error :Value must not be the odd multiple of pi/2");
+        try {
+        	F2.getTanX(String.valueOf(x));
+		} catch (InputMismatchException e) {
+			Assert.assertEquals(e.getMessage(),"Value must not be the odd multiple of pi/2");
+		}
     }
     
 	/**
-	 * Invalid Output
-	 * @throws CustomException 
+	 * 
+	 * This testcase will evaluate the value of 
+	 * invalid input which is an odd multiple of pi/2
+	 * 
 	 */
     @Test
-    public void test2() throws CustomException {
+    public void test2() {
         double x = 90;
-        Assert.assertEquals(F2.getTanX(String.valueOf(x)), "Error :Value must not be the odd multiple of pi/2");
+        try {
+        	F2.getTanX(String.valueOf(x));
+		} catch (InputMismatchException e) {
+			Assert.assertEquals(e.getMessage(),"Value must not be the odd multiple of pi/2");
+		}
     }
     
     /**
-     * Valid Positive Input
-     * @throws CustomException 
+     * This testcase will evaluate the value of Positive input
      */
     @Test
-    public void test3() throws CustomException {
+    public void test3() {
         double x = 290;
         Assert.assertEquals(F2.getTanX(String.valueOf(x)), "-2.74749");
     }
     
     /**
-     * Valid Negative Input
-     * @throws CustomException 
+     * This testcase will evaluate the value of Negative input
      */
     @Test
-    public void test4() throws CustomException {
+    public void test4() {
         double x = -160;
         Assert.assertEquals(F2.getTanX(String.valueOf(x)), "0.36397");
     }
     
     /**
-     * Reducing the angle to lay between 0 and 180
+     * This testcase will evaluate reducing the angle to lay between 0 and 180
      */
 	@Test
     public void test5() {
@@ -64,21 +75,27 @@ public class F2Test {
     }
 	
 	/**
-	 * @throws CustomException 
-     * 
+	 * This testcase will evaluate the NaN as input
      */
 	@Test
-    public void test6() throws CustomException {
+    public void test6()  {
         double x = Double.NaN;
-        Assert.assertEquals(String.valueOf(F2.getTanX(String.valueOf(x))), "Error :Value is NaN or not finite");
+        try {
+			String.valueOf(F2.getTanX(String.valueOf(x)));
+		} catch (ArithmeticException e) {
+			Assert.assertEquals(e.getMessage(),"Value is NaN or not finite");
+		}
     }
 
 	/**
-	 * @throws CustomException 
-     * 
+	 * This testcase will evaluate a single space spring as input
      */
 	@Test
-    public void test7() throws CustomException {
-        Assert.assertEquals(String.valueOf(F2.getTanX(" ")), "Error :Input should be a real number");
+    public void test7() {
+		try {
+			String.valueOf(F2.getTanX(" "));
+		} catch (NumberFormatException e) {
+			Assert.assertEquals(e.getMessage(),"Input should be a real number");
+		}
     }
 }

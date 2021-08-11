@@ -139,12 +139,10 @@ public class Calculator extends Applet implements ActionListener {
 							num2=inp.getText().substring(10);
 							System.out.println(num1+" "+num2);
 							inp.setText(F7.myPow(Double.parseDouble(num1), Long.parseLong(num2))+"");
-						} catch(InputMismatchException F7Exception) {
-							JOptionPane.showMessageDialog(this, "Invalid Input: the x could be floating number or integer. y should be an integer");
-			            } catch (IllegalArgumentException F7Exception) {
-			            	JOptionPane.showMessageDialog(this, "divide by zero exception");
-			            }catch (ArithmeticException F7Exception) {
-			            	JOptionPane.showMessageDialog(this, "infinity");
+						} catch(IllegalArgumentException F7Exception) {
+							JOptionPane.showMessageDialog(this, F7Exception.getMessage() + ".Invalid Input: the x should be floating number or integer. y should be an integer");
+			            } catch (ArithmeticException F7Exception) {
+			            	JOptionPane.showMessageDialog(this, F7Exception.getMessage());
 			            }catch (Exception F7Exception) {
 			            	JOptionPane.showMessageDialog(this, "Undefined output: " + F7Exception.toString());
 			            }

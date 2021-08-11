@@ -99,7 +99,7 @@ public class F7Test {
     /**
      * verify illegal divide by zero exception
      */
-    @Test(expected = IllegalArgumentException.class)
+    @Test(expected = ArithmeticException.class)
     public void test9() {
         double x9 = 0;
         long y9 = -1;

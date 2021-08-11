@@ -19,7 +19,7 @@ public class F7 {
 
         if (base == 0 && exponent < 0) {
 
-            throw new IllegalArgumentException("x = 0 and y is negative number will cause divide by zero exception");
+            throw new ArithmeticException("x = 0 and y is negative number will cause divide by zero exception");
 
 
         }
@@ -41,7 +41,7 @@ public class F7 {
 
         while(exponent != 0){
             if (result == Double.POSITIVE_INFINITY || result == Double.NEGATIVE_INFINITY) {
-                throw new ArithmeticException();
+                throw new ArithmeticException("the result exceeds the boundary");
             }
 
             if((exponent & 1) != 0) {

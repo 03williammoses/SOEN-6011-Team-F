@@ -11,10 +11,11 @@ package teamF.calc;
  */
 public class F5 {
     /**
-     * Method to calculate the value of function F5 by taking input values.
-     * @param a , the staring value of the function
-     * @param base, the base value
-     * @param power, the exponent value 
+     * Method to calculate the value of function F5 by taking input values
+     * 
+     * @param a     the staring value of the function
+     * @param base  the base value
+     * @param power the exponent value
      * @return the value of ab^x
      */
     public double calc_F5(double a, double base, int power) {
@@ -25,7 +26,7 @@ public class F5 {
             if (power > 0) {
                 return 0;
             } else if (power < 0) {
-                throw new IllegalArgumentException("Base = 0 and Power < 0 results in " 
+                throw new IllegalArgumentException("Base = 0 and Power < 0 results in "
             + "Division by Zero issue.");
             }
         } else if (a == 0) {
@@ -57,21 +58,20 @@ public class F5 {
         } else {
             result = a * value;
         }
-        
-        //Check for infinity values.
+
+        // Check for infinity values.
         if (result == Double.POSITIVE_INFINITY) {
-            throw new ArithmeticException("Result exceeded Maximum Value of "
-        + Double.MAX_VALUE);
+            throw new ArithmeticException("Result exceeded Maximum Value of " + Double.MAX_VALUE);
         } else if (result == Double.NEGATIVE_INFINITY) {
-            throw new ArithmeticException("Result exceeded Minimum Value of " 
-        + Double.MIN_VALUE);
-        }else {
+            throw new ArithmeticException("Result exceeded Minimum Value of " + Double.MIN_VALUE);
+        } else {
             return result;
         }
     }
-    
+
     /**
-     * Main method for the class F5.
+     * Main method for the class F5
+     * 
      * @param args for any arguments
      * @return void
      */

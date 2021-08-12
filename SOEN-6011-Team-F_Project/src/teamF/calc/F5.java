@@ -12,6 +12,10 @@ package teamF.calc;
 public class F5 {
     /**
      * Method to calculate the value of function F5 by taking input values.
+     * @param a , the staring value of the function
+     * @param base, the base value
+     * @param power, the exponent value 
+     * @return the value of ab^x
      */
     public double calc_F5(double a, double base, int power) {
         // Check base conditions.
@@ -64,5 +68,15 @@ public class F5 {
         }else {
             return result;
         }
+    }
+    
+    /**
+     * Main method for the class F5.
+     * @param args for any arguments
+     * @return void
+     */
+    public static void main(String[] args) {
+        F5 f5obj = new F5();
+        System.out.println(f5obj.calc_F5(10, 5, 3));
     }
 }

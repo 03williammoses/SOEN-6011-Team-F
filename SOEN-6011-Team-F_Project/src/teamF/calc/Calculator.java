@@ -103,7 +103,7 @@ public class Calculator extends Applet implements ActionListener {
 							double b = Double.parseDouble(num2);
 							int x = Integer.parseInt(num3);
 							inp.setText(f5.calc_F5(a, b, x)+"");
-						} catch (InputMismatchException F5Exception) {
+						} catch (NumberFormatException F5Exception) {
 							JOptionPane.showMessageDialog(this, "Enter Valid values. a, b should be Integer or Float. x should be Integer. " + F5Exception.toString());
 			            } catch (IllegalArgumentException F5Exception) {
 			            	JOptionPane.showMessageDialog(this, "Undefined output. " + F5Exception.toString());

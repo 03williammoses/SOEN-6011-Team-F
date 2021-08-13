@@ -4,13 +4,13 @@ package teamF.calc;
  * Implementation for function 7
  */
 public class F7 {
+
     /**
      * Method to calculate the value of function F7 x^y
      * @param base the base of the function
      * @param exponent the exponent of the function
      * @return the value of function F7 x^y
      */
-
     public static double myPow(double base, long exponent) {
 
         if (base == 0 && exponent == 0) {
@@ -19,7 +19,8 @@ public class F7 {
 
         if (base == 0 && exponent < 0) {
 
-            throw new ArithmeticException("x = 0 and y is negative number will cause divide by zero exception");
+            throw new ArithmeticException("x = 0 and y is negative number " +
+                    "will cause divide by zero exception");
 
 
         }
@@ -55,9 +56,6 @@ public class F7 {
 
         return result;
     }
-    
-    public static void main(String arp[]) {
-    	System.out.println(myPow(2, 10));
-    }
+
 
 }

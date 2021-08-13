@@ -79,6 +79,15 @@ public class F2Test {
      */
 	@Test
     public void test6()  {
+        double x = 60;
+		Assert.assertNotEquals(F2.getTanX(String.valueOf(x)),"Value is NaN or not finite");
+    }
+	
+	/**
+	 * This testcase will evaluate the NaN as input
+     */
+	@Test
+    public void test7()  {
         double x = Double.NaN;
         try {
 			String.valueOf(F2.getTanX(String.valueOf(x)));
@@ -91,11 +100,31 @@ public class F2Test {
 	 * This testcase will evaluate a single space spring as input
      */
 	@Test
-    public void test7() {
+    public void test8() {
 		try {
 			String.valueOf(F2.getTanX(" "));
 		} catch (NumberFormatException e) {
 			Assert.assertEquals(e.getMessage(),"Input should be a real number");
 		}
+    }
+	
+	/**
+	 * This testcase will evaluate a single space spring as input
+     */
+	@Test
+    public void test9() {
+		try {
+			String.valueOf(F2.getTanX("abcd"));
+		} catch (NumberFormatException e) {
+			Assert.assertEquals(e.getMessage(),"Input should be a real number");
+		}
+    }
+	
+	/**
+	 * This testcase will evaluate a single space spring as input
+     */
+	@Test
+    public void test10() {
+		Assert.assertEquals(F2.getTanX("-1"),"-0.01746");
     }
 }

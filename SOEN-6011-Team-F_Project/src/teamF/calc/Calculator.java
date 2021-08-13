@@ -50,12 +50,13 @@ public class Calculator extends Applet implements ActionListener {
 		this.add(clr);
 		clr.addActionListener(this);
 
-		Button operator[] = new Button[5];
+		Button operator[] = new Button[6];
 		operator[0] = new Button("tan(x)");
 		operator[1] = new Button("ab^x");
 		operator[2] = new Button("x^y");
 		operator[3] = new Button("C");
 		operator[4] = new Button("=");
+		operator[5] = new Button("sinh(x)");
 
 		for (i = 0; i < 4; i++) {
 			if (i % 2 == 0) {
@@ -71,7 +72,12 @@ public class Calculator extends Applet implements ActionListener {
 		operator[4].setBounds(150, 150, 100, 100);
 		this.add(operator[4]);
 		operator[4].addActionListener(this);
+		
+		operator[5].setBounds(250, 150, 50, 50);
+		this.add(operator[5]);
+		operator[5].addActionListener(this);
 	}
+	
 	
 	public void actionPerformed(ActionEvent e) {
 			String button = e.getActionCommand();
@@ -87,6 +93,8 @@ public class Calculator extends Applet implements ActionListener {
 				inp.setText("ab^x : a = ");
 			} else if(button.equals("x^y")){
 				inp.setText("x^y : x = ");
+			} else if(button.equals("sinh(x)")){
+				inp.setText("sinh(x) : x = ");
 			} else if(button.equals("=")) {
 				if(inp.getText().startsWith("ab^x")) {
 					if(inp.getText().substring(7).contains("a")) {
@@ -146,6 +154,21 @@ public class Calculator extends Applet implements ActionListener {
 			            }catch (Exception F7Exception) {
 			            	JOptionPane.showMessageDialog(this, "Undefined output: " + F7Exception.toString());
 			            }
+					}
+				}  else if(inp.getText().startsWith("sinh(x)")) {
+					try {
+						num1=inp.getText().substring(13);
+						F3 f = new F3();
+						String result = F3.getSinhx(num1);
+						inp.setText(result);
+					} catch(NumberFormatException F2Exception) {
+						JOptionPane.showMessageDialog(this, F2Exception.getMessage());
+					} catch(InputMismatchException F2Exception) {
+						JOptionPane.showMessageDialog(this, F2Exception.getMessage());
+					} catch(ArithmeticException F2Exception) {
+						JOptionPane.showMessageDialog(this, F2Exception.getMessage());
+					} catch(Exception F2Exception) {
+						JOptionPane.showMessageDialog(this, F2Exception.getMessage());
 					}
 				}
 			}

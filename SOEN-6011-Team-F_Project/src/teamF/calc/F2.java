@@ -9,8 +9,11 @@ import java.util.InputMismatchException;
  * Tan(x) is the trigonometric function that relates the angle x to the 
  * opposite and adjacent sides of a right-angle triangle.
  * 
+ * 
  * @author WILLIAM MOSES STALIN JEBADOSS
  * @studentID 40186129
+ * @created on 01-08-2021
+ * @version 1.0
  *
  */
 public class F2 {

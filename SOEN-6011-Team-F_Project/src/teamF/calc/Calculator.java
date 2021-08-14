@@ -54,11 +54,11 @@ public class Calculator extends Applet implements ActionListener {
 		operator[0] = new Button("tan(x)");
 		operator[1] = new Button("ab^x");
 		operator[2] = new Button("x^y");
-		operator[3] = new Button("C");
+		operator[3] = new Button("sinh(x)");
 		operator[4] = new Button("=");
-		operator[5] = new Button("sinh(x)");
+		operator[5] = new Button("C");
 
-		for (i = 0; i < 4; i++) {
+		for (i = 0; i < 3; i++) {
 			if (i % 2 == 0) {
 				operator[i].setBounds(150, 50 + (i / 2 * 50), 50, 50);
 				this.add(operator[i]);
@@ -69,11 +69,15 @@ public class Calculator extends Applet implements ActionListener {
 				operator[i].addActionListener(this);
 			}
 		}
-		operator[4].setBounds(150, 150, 100, 100);
+		operator[3].setBounds(200, 100, 50, 50);
+		this.add(operator[3]);
+		operator[3].addActionListener(this);
+		
+		operator[4].setBounds(200, 150, 50, 100);
 		this.add(operator[4]);
 		operator[4].addActionListener(this);
 		
-		operator[5].setBounds(250, 150, 50, 50);
+		operator[5].setBounds(150, 150, 50, 100);
 		this.add(operator[5]);
 		operator[5].addActionListener(this);
 	}
